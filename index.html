@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pack Inspire V2 - O Guia Supremo de Planejamento de Casamento</title>
+    
+    <!-- Premium Google Fonts: Playfair Display (Titles) & Poppins (Texts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-bg': '#F3EDE4',
+              'sage': '#86A391',
+              'sage-hover': '#718f7c',
+              'terracotta': '#D9895B',
+              'terracotta-dark': '#CB9E8C',
+              'beige-light': '#EFE5D8',
+              'text-main': '#2F2F2F',
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', 'Georgia', 'serif'],
+              sans: ['Poppins', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      /* Micro-animations and transitions */
+      .animate-fadeIn {
+        animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .animate-pulse-slow {
+        animation: pulseSlow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes pulseSlow {
+        0%, 100% { opacity: 0.15; transform: scale(1); }
+        50% { opacity: 0.25; transform: scale(1.05); }
+      }
+    </style>
+  </head>
+  <body class="bg-[#F3EDE4] text-[#2F2F2F] antialiased selection:bg-[#86A391]/30 selection:text-[#2F2F2F]">
+
+    <!-- Decorative top bar -->
+    <div class="h-1 bg-gradient-to-r from-[#86A391] via-[#D9895B] to-[#86A391] w-full"></div>
+
+    <!-- FLOATING HEADER - Elegant, exact logo green background `#86A391` -->
+    <header id="header-bar" class="sticky top-0 z-50 bg-[#86A391] border-b border-[#718f7c]/40 transition-all duration-300 shadow-md text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+        
+        <button 
+          id="logo-button"
+          onclick="scrollToSection('inicio')" 
+          class="flex items-center gap-2 cursor-pointer focus:outline-none h-20 w-20 sm:h-22 sm:w-22"
+          aria-label="Inspire Início"
+        >
+          <div class="h-16 w-16 flex items-center justify-center">
+            <img 
+              src="logo.jpg" 
+              alt="Logo Inspire" 
+              class="max-h-full max-w-full object-contain animate-fadeIn" 
+              referrerpolicy="no-referrer"
+            />
+          </div>
+        </button>
+
+        <!-- Navigation Links -->
+        <nav id="desktop-nav" class="hidden lg:flex items-center gap-8 font-medium text-base text-white">
+          <button onclick="scrollToSection('inicio')" class="hover:text-[#F3EDE4] cursor-pointer transition-colors py-2 focus:outline-none">Início</button>
+          <button onclick="scrollToSection('beneficios')" class="hover:text-[#F3EDE4] cursor-pointer transition-colors py-2 focus:outline-none">Benefícios</button>
+          <button onclick="scrollToSection('conteudo')" class="hover:text-[#F3EDE4] cursor-pointer transition-colors py-2 focus:outline-none">Conteúdo</button>
+          <button onclick="scrollToSection('depoimentos')" class="hover:text-[#F3EDE4] cursor-pointer transition-colors py-2 focus:outline-none">Depoimentos</button>
+          <button onclick="scrollToSection('faq')" class="hover:text-[#F3EDE4] cursor-pointer transition-colors py-2 focus:outline-none">FAQ</button>
+        </nav>
+
+        <div class="hidden lg:flex items-center">
+          <button 
+            id="header-cta-desktop"
+            onclick="scrollToSection('oferta')"
+            class="bg-[#F3EDE4] text-[#2F2F2F] hover:bg-white active:scale-98 transition-all px-6 py-2.5 rounded-full text-sm tracking-wider font-semibold uppercase shadow-sm cursor-pointer flex items-center gap-2"
+          >
+            QUERO O PACK INSPIRE
+            <svg class="w-4 h-4 text-[#86A391]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path></svg>
+          </button>
+        </div>
+
+        <button 
+          id="mobile-menu-toggle"
+          class="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 cursor-pointer transition-colors focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center"
+          aria-label="Toggle navigation menu"
+        >
+          <!-- Hamburger Icon -->
+          <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path></svg>
+          <!-- Close Icon (hidden initially) -->
+          <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+
+      </div>
+
+      <!-- Mobile Navigation Panel (hidden initially) -->
+      <div id="mobile-nav-pane" class="hidden lg:hidden bg-[#86A391] border-b border-[#718f7c]/40 px-4 pt-2 pb-6 flex-col gap-4 animate-fadeIn text-base text-white">
+        <button onclick="scrollToSection('inicio')" class="text-left py-2.5 font-medium border-b border-white/10 text-white hover:text-[#F3EDE4] min-h-[44px] focus:outline-none">Início</button>
+        <button onclick="scrollToSection('beneficios')" class="text-left py-2.5 font-medium border-b border-white/10 text-white hover:text-[#F3EDE4] min-h-[44px] focus:outline-none">Benefícios</button>
+        <button onclick="scrollToSection('conteudo')" class="text-left py-2.5 font-medium border-b border-white/10 text-white hover:text-[#F3EDE4] min-h-[44px] focus:outline-none">Conteúdo</button>
+        <button onclick="scrollToSection('depoimentos')" class="text-left py-2.5 font-medium border-b border-white/10 text-white hover:text-[#F3EDE4] min-h-[44px] focus:outline-none">Depoimentos</button>
+        <button onclick="scrollToSection('faq')" class="text-left py-2.5 font-medium border-b border-white/10 text-white hover:text-[#F3EDE4] min-h-[44px] focus:outline-none">FAQ</button>
+        
+        <button 
+          id="header-cta-mobile"
+          onclick="scrollToSection('oferta')"
+          class="bg-[#F3EDE4] text-[#2F2F2F] hover:bg-white active:scale-95 transition-all text-center py-3.5 rounded-xl font-bold uppercase text-base tracking-wider w-full focus:outline-none flex items-center justify-center gap-2 mt-2"
+        >
+          QUERO O PACK INSPIRE
+          <svg class="w-4 h-4 text-[#86A391]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path></svg>
+        </button>
+      </div>
+    </header>
+
+
+    <!-- 1. HERO SECTION / FIRST FOLD - Animate elements elegantly -->
+    <section id="inicio" class="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-[#F3EDE4]">
+      
+      <!-- Glowing background circles replicating original screenshot blobs -->
+      <div class="absolute top-[20%] left-[15%] w-96 h-96 bg-[#D9895B]/15 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
+      <div class="absolute top-[25%] right-[15%] w-96 h-96 bg-[#86A391]/15 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+        
+        <!-- Centered Heading with Terracotta Color -->
+        <h1 class="font-serif font-bold text-[#D9895B] text-3xl sm:text-4xl md:text-5xl lg:text-6.5xl leading-[1.2] max-w-4xl mx-auto tracking-tight animate-fadeIn">
+          Você é capaz de organizar o<br />casamento dos seus sonhos!
+        </h1>
+
+        <!-- Centered Phone Mockup containing the weddingGuideCover (half size) -->
+        <div class="mt-8 flex justify-center relative animate-fadeIn" style="animation-delay: 150ms;">
+          <div class="absolute inset-0 flex items-center justify-center -z-10">
+            <div class="w-[190px] h-[190px] bg-gradient-to-tr from-[#86A391]/20 to-[#D9895B]/20 rounded-full blur-xl animate-pulse"></div>
+          </div>
+          
+          <div class="relative max-w-[140px] sm:max-w-[162px] w-full bg-white rounded-[20px] p-1.5 shadow-xl border-2 border-slate-800 transition-transform duration-300 hover:scale-[1.02]">
+            <!-- Notch -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 h-2 w-14 bg-slate-800 rounded-b-md z-20"></div>
+            <!-- Image Frame -->
+            <div class="relative overflow-hidden rounded-[16px] aspect-[9/16] bg-[#86A391]/10">
+              <img 
+                src="capa.jpg" 
+                alt="Mockup do Guia Definitivo" 
+                class="w-full h-full object-cover"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Copy description and secondary headings below image -->
+        <div class="mt-12 space-y-6 max-w-3xl mx-auto px-4 animate-fadeIn" style="animation-delay: 300ms;">
+          
+          <h2 class="font-sans font-bold text-xl sm:text-2xl md:text-3xl text-[#86A391] leading-snug">
+            O Pack Inspire Casamento na Prática vai te mostrar como
+          </h2>
+
+          <div class="w-12 h-0.5 bg-[#D9895B] mx-auto my-3"></div>
+
+          <p class="font-sans text-base sm:text-lg text-[#2F2F2F]/80 leading-relaxed font-light space-y-2">
+            <span>Planejamento estratégico, controle financeiro e orientações profissionais em cada passo.</span>
+            <br class="hidden sm:inline" />
+            <span>Mais do que ferramentas, o Pack Inspire entrega clareza, autonomia e a tranquilidade.</span>
+            <br class="hidden sm:inline" />
+            <span class="font-medium text-[#748775]">Criado por quem vive os bastidores de centenas de eventos de sucesso.</span>
+          </p>
+
+          <!-- Sage Green Button -->
+          <div class="pt-6">
+            <button 
+              id="hero-cta"
+              onclick="scrollToSection('oferta')"
+              class="bg-[#86A391] hover:bg-[#718f7c] active:scale-95 text-white font-sans font-bold text-base uppercase tracking-wider px-10 py-5 rounded-full shadow-lg hover:shadow-xl transition-all cursor-pointer min-h-[50px] inline-block"
+            >
+              QUERO PLANEJAR COM LEVEZA E SEGURANÇA
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 2. PROBLEMA SECTION - Sage green `#86A391` background strip matching logo -->
+    <section id="beneficios" class="py-16 md:py-24 bg-[#86A391] text-white relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center font-sans">
+          
+          <!-- Left Column: Image of Stressed Woman -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative max-w-xs sm:max-w-sm w-full">
+              <!-- Elegant White Border Offset Frame -->
+              <div class="absolute inset-0 border border-white rounded-3xl translate-x-3 translate-y-3 pointer-events-none"></div>
+              <div class="relative aspect-square overflow-hidden rounded-3xl shadow-2xl bg-[#EFE5D8]/30">
+                <img 
+                  src="mulher_1.jpg" 
+                  alt="Noiva estressada e preocupada com o planejamento do casamento" 
+                  class="w-full h-full object-cover"
+                  referrerpolicy="no-referrer"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Dynamic Stressed to Success Story Card -->
+          <div class="lg:col-span-7 space-y-6 text-left">
+            
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl md:text-4.5xl text-white leading-tight">
+              Casar é um sonho, mas sem organização o planejamento vira estresse, culpa e frustração.
+            </h2>
+
+            <p class="font-sans text-base sm:text-lg text-white/90 font-light leading-relaxed">
+              Sem direção, o tempo passa, os erros custam caro… e a ansiedade toma conta.
+            </p>
+
+            <!-- White background card block styled elegantly inside the green folder section -->
+            <div class="bg-white text-[#2F2F2F] p-8 rounded-2xl shadow-xl space-y-4 border border-[#EFE5D8]">
+              <p class="font-sans text-base leading-relaxed text-[#2F2F2F]/90 font-light">
+                O Pack Inspire foi criado para noivos que querem economizar sem abrir mão de uma organização profissional.
+              </p>
+              <p class="font-sans text-base leading-relaxed text-[#2F2F2F] font-semibold">
+                Aqui, você terá o que realmente importa para tomar decisões conscientes, controlar o orçamento e garantir que tudo esteja sob controle até o grande dia.
+              </p>
+              
+              <div class="flex items-center gap-2 text-[#D9895B] font-sans font-semibold text-sm pt-2">
+                <span class="text-lg">📌</span>
+                <span>Criado por uma produtora com mais de 10 anos de experiência em casamentos de alto padrão</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 3. CONTEÚDO / O QUE ESTÁ INCLUSO - Centered layout with staggered entrance -->
+    <section id="conteudo" class="py-16 md:py-24 bg-[#F3EDE4]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Main title -->
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-[#D9895B] leading-tight">
+            O que está incluso no Pack
+          </h2>
+          <div class="w-12 h-0.5 bg-[#86A391] mx-auto mt-3"></div>
+        </div>
+
+        <div class="space-y-16">
+          
+          <!-- Item 1 (Wide row, centered) - Guia Definitivo do Casamento Inspire -->
+          <div class="max-w-4xl mx-auto bg-white border border-[#EFE5D8] rounded-3xl p-8 sm:p-12 shadow-md flex flex-col items-center text-center space-y-8">
+            
+            <div class="space-y-2">
+              <span class="text-xs uppercase tracking-widest text-[#86A391] font-bold">Item 1</span>
+              <h3 class="font-serif font-bold text-2xl sm:text-3.5xl text-[#D9895B]">
+                Guia Definitivo do Casamento Inspire
+              </h3>
+            </div>
+
+            <!-- Centered mockup book cover with hover scale -->
+            <div class="max-w-[260px] sm:max-w-[280px] w-full relative group">
+              <div class="absolute inset-0 bg-[#86A391]/10 rounded-2xl translate-x-3 translate-y-3 pointer-events-none transition-transform group-hover:translate-x-1 duration-300"></div>
+              <div class="relative border border-[#EFE5D8] rounded-2xl overflow-hidden shadow-lg aspect-[3/4] bg-[#F3EDE4] transition-all duration-300 group-hover:scale-[1.03]">
+                <img 
+                  src="capa.jpg" 
+                  alt="Capa do Guia Definitivo do Casamento Inspire" 
+                  class="w-full h-full object-cover"
+                  referrerpolicy="no-referrer"
+                />
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="max-w-2xl space-y-4">
+              <p class="font-sans text-base text-[#2F2F2F]/85 leading-relaxed font-light">
+                Um passo a passo completo do noivado ao pós-casamento, com tarefas por fase, checklists, dicas práticas e profissionais.
+              </p>
+              <p class="font-sans text-base text-[#2F2F2F] font-medium italic flex items-center justify-center gap-2">
+                <span>💡</span>
+                <span>Você nunca mais vai se perguntar: “Será que estou esquecendo algo? Qual o próximo passo?”</span>
+              </p>
+            </div>
+
+          </div>
+
+
+          <!-- Item 2 & Item 3 - Side-by-side columns below -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto w-full">
+            
+            <!-- Item 2: Planilha Financeira do Casamento Inspire -->
+            <div class="bg-white border border-[#EFE5D8] rounded-3xl p-8 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-between text-center space-y-8 group">
+              
+              <div class="space-y-2 w-full">
+                <span class="text-xs uppercase tracking-widest text-[#D9895B] font-bold">Item 2</span>
+                <h3 class="font-serif font-bold text-xl sm:text-2.5xl text-[#D9895B] min-h-[64px] flex items-center justify-center">
+                  Planilha Financeira do Casamento Inspire
+                </h3>
+              </div>
+
+              <div class="max-w-[200px] w-full relative">
+                <div class="absolute inset-0 bg-[#D9895B]/10 rounded-2xl translate-x-2.5 translate-y-2.5 pointer-events-none"></div>
+                <div class="relative border border-[#EFE5D8] rounded-2xl overflow-hidden shadow-md aspect-square bg-[#F3EDE4] transition-all duration-300 group-hover:scale-[1.03]">
+                  <img 
+                    src="planilha.jpg" 
+                    alt="Planilha Financeira do Casamento Inspire" 
+                    class="w-full h-full object-cover"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-4 w-full">
+                <p class="font-sans text-base text-[#2F2F2F]/85 leading-relaxed font-light">
+                  Organize todos os gastos do casamento com clareza e praticidade. Categorias prontas, margem para imprevistos e cálculo automático.
+                </p>
+                <p class="font-sans text-base text-[#2F2F2F] font-medium italic flex items-center justify-center gap-2">
+                  <span>💡</span>
+                  <span>Domine seu orçamento com segurança e leveza.</span>
+                </p>
+              </div>
+
+            </div>
+
+            <!-- Item 3: Manual de Contratos Inspire -->
+            <div class="bg-white border border-[#EFE5D8] rounded-3xl p-8 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-between text-center space-y-8 group">
+              
+              <div class="space-y-2 w-full">
+                <span class="text-xs uppercase tracking-widest text-[#86A391] font-bold">Item 3</span>
+                <h3 class="font-serif font-bold text-xl sm:text-2.5xl text-[#D9895B] min-h-[64px] flex items-center justify-center">
+                  Manual de Contratos Inspire
+                </h3>
+              </div>
+
+              <div class="max-w-[200px] w-full relative">
+                <div class="absolute inset-0 bg-[#86A391]/10 rounded-2xl translate-x-2.5 translate-y-2.5 pointer-events-none"></div>
+                <div class="relative border border-[#EFE5D8] rounded-2xl overflow-hidden shadow-md aspect-square bg-[#F3EDE4] transition-all duration-300 group-hover:scale-[1.03]">
+                  <img 
+                    src="contratos.jpg" 
+                    alt="Manual de Contratos Inspire de Casamento" 
+                    class="w-full h-full object-cover"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-4 w-full">
+                <p class="font-sans text-base text-[#2F2F2F]/85 leading-relaxed font-light">
+                  Checklist essencial para analisar contratos com fornecedores de forma simples, mesmo sem experiência jurídica.
+                </p>
+                <p class="font-sans text-base text-[#2F2F2F] font-medium italic flex items-center justify-center gap-2">
+                  <span>💡</span>
+                  <span>Evite riscos, entenda cláusulas e proteja seu investimento.</span>
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 4. SEÇÃO PRA QUEM É O PACK - Terracotta/orange solid row with motion -->
+    <section class="py-16 md:py-24 bg-[#CB9E8C] text-white overflow-hidden">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+        
+        <h2 class="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-white">
+          Pra quem é o Pack Inspire
+        </h2>
+
+        <div class="w-12 h-0.5 bg-white/60 mx-auto"></div>
+
+        <p class="font-sans text-lg text-white/95 leading-relaxed font-light max-w-2xl mx-auto">
+          O Pack foi feito para você que:
+        </p>
+
+        <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 sm:p-12 text-center max-w-2xl mx-auto border border-white/20 shadow-xl space-y-5">
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-base sm:text-lg">
+            <span class="text-xl leading-none flex-shrink-0">✅</span>
+            <span class="font-sans font-light leading-relaxed text-white">Está noiva(o) e quer organizar seu casamento com autonomia</span>
+          </div>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-base sm:text-lg">
+            <span class="text-xl leading-none flex-shrink-0">✅</span>
+            <span class="font-sans font-light leading-relaxed text-white">Quer economizar sem perder qualidade</span>
+          </div>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-base sm:text-lg">
+            <span class="text-xl leading-none flex-shrink-0">✅</span>
+            <span class="font-sans font-light leading-relaxed text-white">Gosta de planejar e precisa de um guia para não se perder</span>
+          </div>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-base sm:text-lg">
+            <span class="text-xl leading-none flex-shrink-0">✅</span>
+            <span class="font-sans font-light leading-relaxed text-white">Tem pouco tempo e quer um material pronto, confiável e funcional</span>
+          </div>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-base sm:text-lg">
+            <span class="text-xl leading-none flex-shrink-0">✅</span>
+            <span class="font-sans font-light leading-relaxed text-white">Está cansada de informações soltas na internet e quer clareza</span>
+          </div>
+        </div>
+
+        <div class="pt-6">
+          <button 
+            onclick="scrollToSection('oferta')"
+            class="bg-white text-[#CB9E8C] hover:bg-[#F3EDE4] active:scale-95 transition-all font-sans font-bold text-base uppercase tracking-wider px-10 py-5 rounded-full shadow-lg hover:shadow-xl cursor-pointer inline-block"
+          >
+            QUERO O PACK INSPIRE COMPLETO
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 5. DEPOIMENTOS - Animated review cards and matched page decoration -->
+    <section id="depoimentos" class="py-16 md:py-24 bg-[#F3EDE4] overflow-hidden relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-[#D9895B]">
+            Depoimentos
+          </h2>
+          <div class="w-12 h-0.5 bg-[#86A391] mx-auto mt-3"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Review 1 -->
+          <div class="bg-[#EFE5D8]/40 border border-[#EFE5D8] rounded-2xl p-8 flex flex-col justify-between items-center gap-8 shadow-sm relative text-center">
+            <span class="absolute top-2 right-4 text-8xl font-serif text-[#D9895B]/10 leading-none select-none">“</span>
+            
+            <div class="space-y-4 flex flex-col items-center w-full">
+              <div class="flex gap-1 justify-center">
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </div>
+              <p class="font-sans text-base text-[#2F2F2F]/90 italic leading-relaxed font-light">
+                “Eu tinha medo de esquecer algo importante, mas o Guia Inspire me deu segurança e organização do início ao fim.”
+              </p>
+            </div>
+
+            <div class="border-t border-[#EFE5D8] w-full pt-4 text-center">
+              <h4 class="font-sans font-bold text-[#D9895B] text-base tracking-wide uppercase">JULIANA MOURA, NOIVA INSPIRE</h4>
+            </div>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="bg-[#EFE5D8]/40 border border-[#EFE5D8] rounded-2xl p-8 flex flex-col justify-between items-center gap-8 shadow-sm relative text-center">
+            <span class="absolute top-2 right-4 text-8xl font-serif text-[#D9895B]/10 leading-none select-none">“</span>
+            
+            <div class="space-y-4 flex flex-col items-center w-full">
+              <div class="flex gap-1 justify-center">
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </div>
+              
+              <p class="font-sans text-base text-[#2F2F2F]/90 italic leading-relaxed font-light">
+                “A planilha de orçamento salvou meu casamento! Eu consegui visualizar tudo e ainda reduzi custos com base no que aprendi no guia.”
+              </p>
+            </div>
+
+            <div class="border-t border-[#EFE5D8] w-full pt-4 text-center">
+              <h4 class="font-sans font-bold text-[#D9895B] text-base tracking-wide uppercase">CLÁUDIO E VANESSA, CASAL INSPIRE</h4>
+            </div>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="bg-[#EFE5D8]/40 border border-[#EFE5D8] rounded-2xl p-8 flex flex-col justify-between items-center gap-8 shadow-sm relative text-center">
+            <span class="absolute top-2 right-4 text-8xl font-serif text-[#D9895B]/10 leading-none select-none">“</span>
+            
+            <div class="space-y-4 flex flex-col items-center w-full">
+              <div class="flex gap-1 justify-center">
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </div>
+              <p class="font-sans text-base text-[#2F2F2F]/90 italic leading-relaxed font-light">
+                “Me senti acompanhada o tempo todo, mesmo organizando sozinha. É como se a Inspire estivesse ali comigo.”
+              </p>
+            </div>
+
+            <div class="border-t border-[#EFE5D8] w-full pt-4 text-center">
+              <h4 class="font-sans font-bold text-[#D9895B] text-base tracking-wide uppercase">RENATA RODRIGUES, NOIVA INSPIRE</h4>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 6. SECTION METÁFORA VALOR - Warm sand/terracotta background split page block animate entrance -->
+    <section class="py-16 md:py-24 bg-[#CB9E8C] text-white overflow-hidden relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Centered subheadline -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="font-serif font-bold text-2xl sm:text-3xl md:text-4.5xl leading-tight">
+            Planejar um casamento com estrutura profissional costuma sair caro
+          </h2>
+          <div class="w-12 h-0.5 bg-white/60 mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          <!-- Left Column: Image & cost comparison -->
+          <div class="space-y-8 text-center flex flex-col items-center">
+            <div class="relative max-w-xs sm:max-w-sm w-full">
+              <div class="absolute inset-0 border border-white/60 rounded-full translate-x-3 translate-y-3 pointer-events-none"></div>
+              <div class="relative aspect-square overflow-hidden rounded-full shadow-2xl bg-white/15">
+                <img 
+                  src="check.jpg" 
+                  alt="Salão de casamento profissional decorado" 
+                  class="w-full h-full object-cover"
+                  referrerpolicy="no-referrer"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-4 max-w-md">
+              <p class="font-sans text-base sm:text-lg text-white font-semibold tracking-wide">
+                Assessoria completa, planilha personalizada, revisão de contratos... tudo isso separado tem preços a partir de R$ 2.000.
+              </p>
+              <div class="pt-2">
+                <button 
+                  onclick="scrollToSection('oferta')"
+                  class="bg-[#86A391] hover:bg-[#718f7c] active:scale-95 text-white font-sans font-bold text-base uppercase tracking-wider px-8 py-4.5 rounded-full shadow-lg transition-all cursor-pointer border border-[#86A391]/20 inline-block"
+                >
+                  QUERO TUDO ISSO NO MEU PLANEJAMENTO
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Empathic answer -->
+          <div class="space-y-6 text-center bg-white/10 p-8 sm:p-12 rounded-3xl border border-white/20 backdrop-blur-sm self-stretch flex flex-col justify-center items-center">
+            
+            <p class="font-sans text-lg sm:text-xl text-white font-semibold leading-relaxed">
+              Mas e se você pudesse ter acesso a tudo isso em um só lugar, com linguagem simples, formato prático e por um valor acessível?
+            </p>
+
+            <div class="space-y-4 font-sans text-base leading-relaxed text-white/90 font-light text-center">
+              <p>
+                O Pack Inspire foi criado justamente para isso: entregar organização, segurança e tranquilidade para noivos que desejam assumir o controle do próprio casamento, com a orientação de quem trabalha há mais de 10 anos na organização de centenas de eventos reais.
+              </p>
+              <p class="font-bold text-white text-lg">
+                Você economiza tempo, evita erros e vive essa fase com mais tranquilidade!
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 7. OFERTA ESPECIAL DE LANÇAMENTO - Warm Sand Peach Card with scroll animation -->
+    <section id="oferta" class="py-20 md:py-28 bg-[#F3EDE4] border-t border-[#EFE5D8] overflow-hidden">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-[#E5C3A6] rounded-3xl overflow-hidden shadow-2xl border border-[#EFE5D8] max-w-4xl mx-auto flex flex-col md:flex-row items-center p-8 sm:p-12 md:p-16 gap-10 md:gap-14">
+          
+          <!-- Left side: Client couple photo as a perfect proportional square -->
+          <div class="w-full max-w-[280px] sm:max-w-[320px] md:w-[320px] lg:w-[350px] flex-shrink-0 flex justify-center">
+            <div class="aspect-square w-full rounded-2xl overflow-hidden shadow-xl border-4 border-white/30 bg-white/10 relative group">
+              <img 
+                src="casal.jpg" 
+                alt="Noivos felizes celebrando o casamento" 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+          </div>
+
+          <!-- Right side: Detailed Offer card -->
+          <div class="flex-grow w-full text-center text-white flex flex-col justify-between items-center space-y-6">
+            
+            <div class="space-y-6 w-full flex flex-col items-center">
+              <span class="bg-white/15 text-white text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full inline-block border border-white/20">
+                OFERTA ESPECIAL DE LANÇAMENTO
+              </span>
+              
+              <h3 class="font-serif font-bold text-3xl sm:text-4xl text-white leading-tight">
+                Oferta especial de lançamento
+              </h3>
+
+              <p class="font-sans text-base sm:text-lg text-white/95 leading-relaxed font-light max-w-2xl mx-auto">
+                Separadamente, os itens do Pack Inspire custariam mais de R$300. Mas nesta oferta de lançamento, você leva tudo por apenas R$67,00.
+              </p>
+
+              <!-- Centered Meta horizontal bullets -->
+              <div class="flex flex-col sm:flex-row items-center justify-center gap-y-3 gap-x-8 pt-2 font-sans text-base">
+                <div class="flex items-center gap-2">
+                  <span class="text-xl">📩</span>
+                  <span class="font-medium text-white">Entrega imediata</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xl">♾️</span>
+                  <span class="font-medium text-white">Acesso vitalício</span>
+                </div>
+              </div>
+
+              <!-- Centered Check features list matching upload exactly -->
+              <div class="space-y-3.5 pt-6 border-t border-white/15 w-full flex flex-col items-center">
+                <div class="flex items-center justify-center gap-2 text-white font-medium text-base text-center">
+                  <span class="text-lg">✔️</span>
+                  <span>Guia Definitivo Inspire para Casamento</span>
+                </div>
+                <div class="flex items-center justify-center gap-2 text-white font-medium text-base text-center">
+                  <span class="text-lg">✔️</span>
+                  <span>Planilha de Orçamento Inspire</span>
+                </div>
+                <div class="flex items-center justify-center gap-2 text-white font-medium text-base text-center">
+                  <span class="text-lg">✔️</span>
+                  <span>Guia Inspire de Segurança em Contratos</span>
+                </div>
+                <div class="flex items-center justify-center gap-2 border-t border-white/20 pt-4 w-full max-w-md font-semibold text-white justify-center text-center">
+                  <span class="text-xl">♾️</span>
+                  <span>Acesso vitalício + updates grátis</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Purchase button and secure seals with brand green `#86A391` -->
+            <div class="space-y-4 pt-6 border-t border-white/15 w-full max-w-md mx-auto">
+              <a 
+                href="https://pay.hotmart.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                id="main-purchase-link"
+                class="w-full bg-[#86A391] hover:bg-[#718f7c] active:scale-95 text-white font-sans font-bold text-base sm:text-lg uppercase tracking-wider py-4.5 rounded-full shadow-lg hover:shadow-xl transition-all cursor-pointer no-underline flex items-center justify-center gap-2 min-h-[52px]"
+              >
+                GARANTIR POR R$67,00
+                <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path></svg>
+              </a>
+
+              <!-- Secure checkout badges -->
+              <div class="flex items-center justify-center gap-2 font-sans text-sm text-white/90">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <span>Checkout Seguro e Criptografado</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 8. FAQ (perguntas frequentes) - Sage green `#86A391` backdrop block with accordion scroll animation -->
+    <section id="faq" class="py-16 md:py-24 bg-[#86A391] text-white relative border-t border-[#718f7c]/40 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-white">
+            FAQ (perguntas frequentes)
+          </h2>
+          <div class="w-12 h-0.5 bg-white/60 mx-auto mt-3"></div>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-4">
+          
+          <!-- Accordion 1 -->
+          <div class="border border-white/25 rounded-2xl bg-white text-[#2F2F2F] overflow-hidden shadow-md transition-all duration-300">
+            <button
+              id="faq-btn-1"
+              onclick="toggleFAQ(1)"
+              class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer min-h-[44px]"
+            >
+              <span class="font-sans font-semibold text-base sm:text-lg text-[#2F2F2F]">
+                É indicado para casamentos grandes e pequenos?
+              </span>
+              <svg id="faq-icon-1" class="w-5 h-5 text-[#86A391] transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path></svg>
+            </button>
+            <div id="faq-content-1" class="transition-all duration-300 max-h-0 opacity-0 pointer-events-none overflow-hidden">
+              <div class="px-6 py-5 font-sans text-base text-[#2F2F2F]/85 leading-relaxed font-light bg-white text-justify">
+                Sim! O guia se adapta a qualquer porte de casamento. Você poderá ajustar prazos e fornecedores conforme sua realidade.
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 2 -->
+          <div class="border border-white/25 rounded-2xl bg-white text-[#2F2F2F] overflow-hidden shadow-md transition-all duration-300">
+            <button
+              id="faq-btn-2"
+              onclick="toggleFAQ(2)"
+              class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer min-h-[44px]"
+            >
+              <span class="font-sans font-semibold text-base sm:text-lg text-[#2F2F2F]">
+                Preciso ter conhecimento prévio sobre organização ou planilhas?
+              </span>
+              <svg id="faq-icon-2" class="w-5 h-5 text-[#86A391] transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path></svg>
+            </button>
+            <div id="faq-content-2" class="transition-all duration-300 max-h-0 opacity-0 pointer-events-none overflow-hidden">
+              <div class="px-6 py-5 font-sans text-base text-[#2F2F2F]/85 leading-relaxed font-light bg-white text-justify">
+                Não! Tudo foi criado com linguagem simples, prática e fácil de aplicar. Mesmo quem nunca organizou um evento vai se sentir confiante.
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 3 -->
+          <div class="border border-white/25 rounded-2xl bg-white text-[#2F2F2F] overflow-hidden shadow-md transition-all duration-300">
+            <button
+              id="faq-btn-3"
+              onclick="toggleFAQ(3)"
+              class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer min-h-[44px]"
+            >
+              <span class="font-sans font-semibold text-base sm:text-lg text-[#2F2F2F]">
+                Como e quando receberei o acesso ao conteúdo?
+              </span>
+              <svg id="faq-icon-3" class="w-5 h-5 text-[#86A391] transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path></svg>
+            </button>
+            <div id="faq-content-3" class="transition-all duration-300 max-h-0 opacity-0 pointer-events-none overflow-hidden">
+              <div class="px-6 py-5 font-sans text-base text-[#2F2F2F]/85 leading-relaxed font-light bg-white text-justify col gap-2">
+                Após a confirmação do pagamento, você receberá automaticamente em seu e-mail todos os materiais do Pack Inspire. Pagamentos via Pix e Cartão possuem liberação automática e normalmente são disponibilizados em poucos minutos. Você poderá acessar todo o conteúdo pelo computador, tablet ou celular, quando e onde quiser de forma simples e com acesso vitalício.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- PREMIUM FOOTER -->
+    <footer class="bg-[#EFE5D8] text-[#2F2F2F] border-t border-[#D9D0C4] py-16 text-base">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-[#D9D0C4]/60">
+          
+          <div class="h-16 w-16 flex items-center justify-center">
+            <img 
+              src="logo.jpg" 
+              alt="Logo Inspire" 
+              class="max-h-full max-w-full object-contain" 
+              referrerpolicy="no-referrer"
+            />
+          </div>
+
+          <!-- Menu Links using brand green #86A391 -->
+          <div class="flex flex-wrap justify-center gap-6 text-base font-semibold font-sans">
+            <button onclick="scrollToSection('inicio')" class="hover:text-[#86A391] cursor-pointer focus:outline-none transition-colors">Início</button>
+            <button onclick="scrollToSection('beneficios')" class="hover:text-[#86A391] cursor-pointer focus:outline-none transition-colors">Benefícios</button>
+            <button onclick="scrollToSection('conteudo')" class="hover:text-[#86A391] cursor-pointer focus:outline-none transition-colors">Conteúdo</button>
+            <button onclick="scrollToSection('depoimentos')" class="hover:text-[#86A391] cursor-pointer focus:outline-none transition-colors">Depoimentos</button>
+            <button onclick="scrollToSection('faq')" class="hover:text-[#86A391] cursor-pointer focus:outline-none transition-colors">FAQ</button>
+          </div>
+
+          <!-- Social handles using brand green #86A391 -->
+          <div class="flex items-center gap-4">
+            <a href="#" class="p-3 bg-white/60 hover:bg-[#86A391]/20 rounded-full text-[#718f7c] transition-colors" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="p-3 bg-white/60 hover:bg-[#86A391]/20 rounded-full text-[#718f7c] transition-colors" aria-label="Email">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 text-sm text-[#2F2F2F]/65 text-center font-light">
+          <p>© <span id="current-year">2026</span> Inspire. Todos os direitos reservados.</p>
+          <p class="flex items-center gap-1 justify-center">
+            Feito com <svg class="w-4 h-4 fill-[#D9895B] text-[#D9895B]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> para eternizar momentos.
+          </p>
+        </div>
+
+      </div>
+    </footer>
+
+
+    <script>
+      // Automatically keep the footer copyright year updated
+      document.getElementById('current-year').innerText = new Date().getFullYear();
+
+      // Mobile Menu state toggling
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileNavPane = document.getElementById('mobile-nav-pane');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const closeIcon = document.getElementById('close-icon');
+
+      function toggleMobileMenu() {
+        const isCurrentlyHidden = mobileNavPane.classList.contains('hidden');
+        if (isCurrentlyHidden) {
+          mobileNavPane.classList.remove('hidden');
+          mobileNavPane.classList.add('flex');
+          hamburgerIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+        } else {
+          mobileNavPane.classList.add('hidden');
+          mobileNavPane.classList.remove('flex');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      }
+
+      mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+
+      // Scroll to section helper
+      function scrollToSection(id) {
+        // Close mobile menu if open
+        mobileNavPane.classList.add('hidden');
+        mobileNavPane.classList.remove('flex');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      // FAQ accordion toggling
+      function toggleFAQ(id) {
+        const activeContent = document.getElementById(`faq-content-${id}`);
+        const activeIcon = document.getElementById(`faq-icon-${id}`);
+        
+        // Check if the clicked accordion is currently open
+        const isOpened = !activeContent.classList.contains('max-h-0');
+        
+        // Close all accordions first
+        for (let i = 1; i <= 3; i++) {
+          const content = document.getElementById(`faq-content-${i}`);
+          const icon = document.getElementById(`faq-icon-${i}`);
+          if (content && icon) {
+            content.classList.add('max-h-0', 'opacity-0', 'pointer-events-none');
+            content.classList.remove('max-h-[500px]', 'border-t', 'border-[#EFE5D8]', 'opacity-100');
+            icon.classList.remove('rotate-180');
+          }
+        }
+
+        // Open the selected accordion if it was closed
+        if (!isOpened) {
+          activeContent.classList.remove('max-h-0', 'opacity-0', 'pointer-events-none');
+          activeContent.classList.add('max-h-[500px]', 'border-t', 'border-[#EFE5D8]', 'opacity-100');
+          activeIcon.classList.add('rotate-180');
+        }
+      }
+
+      // Dynamic Image pathing resolver
+      // Ensures images are found both in AI Studio workspace dev and when flat-uploaded to GitHub root
+      document.addEventListener("DOMContentLoaded", () => {
+        const isDev = window.location.hostname.includes("run.app") || window.location.hostname.includes("localhost") || window.location.port === "3000";
+        document.querySelectorAll("img").forEach(img => {
+          let src = img.getAttribute("src");
+          if (src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/") && !src.startsWith("./src/")) {
+            if (isDev) {
+              // Dev replacement: map flat names back to folders, map 'confira.jpg' to 'check.jpg' in development
+              if (src === "confira.jpg") {
+                src = "check.jpg";
+              }
+              img.src = "/src/assets/images/" + src;
+            } else {
+              // Prod (GitHub): Use root flat naming of files
+              img.src = src;
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
